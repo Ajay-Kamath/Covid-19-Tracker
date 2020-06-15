@@ -1,0 +1,288 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Colorlib Templates">
+  <meta name="author" content="Colorlib">
+  <meta name="keywords" content="Colorlib Templates">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <!-- Title Page-->
+  <title>Registration Form</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+  <!-- Main CSS-->
+  <link href="{% static 'css/register.css' %}" rel="stylesheet" media="all">
+
+  <script>
+    function populate(s1, s2) {
+      var s1 = document.getElementById(s1);
+      var s2 = document.getElementById(s2);
+      s2.innerHTML = "";
+      if (s1.value == "maharashtra") {
+        var optionArray = ["|", "mumbai|Mumbai", "pune|Pune", "thane|Thane", "sangli|Sangli", "ahmadnagar|Ahmadnagar", "nagpur|Nagpur", "aurangabad|Aurangabad", "buldana|Buldana", "akola|Akola", "other states|Other States", "latur|Latur",
+          "nashik|Nashik", "satara|Satara", "palghar|Palghar", "kolhapur|Kolhapur", "yavatmal|Yavatmal", "ratnagiri|Ratnagiri", "osmanabad|Osmanabad", "amravati|Amravati", "jalgaon|Jalgaon", "washim|Washim", "sindhudurg|Sindhudurg", "jalna|Jalna",
+          "hingoli|Hingoli", "gondiya|Gondiya", "bid|Bid", "unknown|Unknown"
+        ];
+      } else if (s1.value == "delhi") {
+        var optionArray = ["|", "south delhi|South delhi", "new delhi|New delhi", "south west delhi|South West delhi", "north west delhi|North West delhi", "north delhi|North delhi", "west delhi|West delhi", "north east delhi|North East delhi", "east delhi|East delhi", "unknown|Unknown"];
+      } else if (s1.value == "tamil") {
+        var optionArray = ["|", "chennai|Chennai", "coimbatore|Coimbatore", "erode|Erode", "tiruppur|Tiruppur", "tirunelveli|Tirunelveli", "dindigul|Dindigul", "namakkal|Namakkal", "tiruchirappalli|Tiruchirappalli", "chengalpattu|Chengalpattu", "theni|Theni", "ranipet|Ranipet", "thiruvallur|Thiruvallur", "viluppuram|Viluppuram", "madurai|Madurai", "karur|Karur", "thoothukkudi|Thoothukkudi", "nagapattinam|Nagapattinam", "cuddalore|Cuddalore", "salem|Salem", "tirupathur|Tirupathur", "kanniyakumari|Kanniyakumari", "thiruvarur|Thiruvarur", "vellore|Vellore", "virudhunagar|Virudhunagar", "thanjavur|Thanjavur", "the nilgilis|The Nilgiris", "tiruvannamalai|Tiruvannamalai", "kancheepuram|Kancheepuram", "sivaganga|Sivaganga", "kallakurichi|Kallakurichi", "tenkasi|Tenkasi", "ramanathapuram|Ramanathapuram", "perambalur|Perambalur", "ariyalur|Ariyalur"];
+      } else if (s1.value == "rajasthan") {
+        var optionArray = ["|", "jaipur|Jaipur", "tonk|Tonk", "banswara|Banswara", "jodhpur|Jodhpur", "evacuees|Evacuees", "kota|Kota", "bikaner|Bikaner", "jhunjhunu|Jhunjhunu", "jaisalmer|Jaisalmer", "bhilwara|Bhilwara", "jhalawar|Jhalawar", "churu|Churu", "bharatpur|Bharatpur", "dausa|Dausa", "alwar|Alwar", "nagaur|Nagaur", "dungarpur|Dungarpur", "ajmer|Ajmer", "udaipur|Udaipur", "karauli|Karauli", "sikar|sikar", "pratapgarh|Pratapgarh", "pali|Pali", "hanumangarh|Hanumangarh", "dhaulpur|Dhaulpur", "barmer|Barmer"];
+      } else if (s1.value == "madhya") {
+        var optionArray = ["|", "indore|Indore", "bhopal|Bhopal", "ujjain|Ujjain", "khargone|Khargone", "barwani|Barwani", "vidisha|Vidisha", "morena|Morena", "hoshangabad|Hoshangabad", "jabalpur|Jabalpur", "khandwa|Khandwa", "gwalior|Gwalior", "dewas|Dewas", "shivpuri|Shivpuri", "sheopur|Sheopur", "chhindwara|Chhindwara", "shajapur|Shajapur", "sagar|Sagar", "ratlam|Ratlam", "raisen|Raisen", "other region|Other Region", "mandsaur|Mandsaur", "dhar|Dhar", "betul|Betul"];
+      } else if (s1.value == "gujarat") {
+        var optionArray = ["|", "ahmadabad|Ahmadabad", "vadodara|Vadodara", "surat|Surat", "bhavnagar|Bhavnagar", "rajkot|Rajkot", "gandhinagar|Gandhinagar", "patan|Patan", "bharuch|Bharuch", "anand|Anand", "kachchh|kachchh", "porbandar|Porbandar", "chota udaipur|Chota Udaipur", "mahesana|Mahesana", "gir somnath|Gir Somnath", "sabar kantha|Sabar Kantha", "panch mahals|Panch Mahals", "morbi|Morbi", "jamnagar|Jamnagar", "dahod|Dahod"];
+      } else if (s1.value == "uttar") {
+        var optionArray = ["|", "agra|Agra", "gautam buddha nagar|Gautam Buddha Nagar", "meerut|Meerut", "lucknow|Lucknow", "ghaziabad|Ghaziabad", "saharanpur|Saharanpur", "shamli|Shamli", "firozabad|Firozabad", "bulandshahr|Bulandshahr", "sitapur|Sitapur", "varanasi|Varanasi", "kanpur nagar|Kanpur Nagar", "basti|Basti", "amroha|Amroha", "rampur|Rampur", "pratapgarh|Pratapgarh", "muzaffarnagar|Muzaffarnagar", "mahrajganj|Mahrajganj", "hapur|Hapur", "bareilly|Bareilly", "mathura|Mathura", "ghazipur|Ghazipur", "baghpat|Baghpat", "kheri|Kheri", "jaunpur|Jaunpur", "hathras|Hathras", "azamgarh|Azamgarh", "auraiya|Auraiya", "rae bareli|Rae Bareli", "pilibhit|Pilibhit", "mirzapur|Mirzapur", "kaushambi|Kaushambi", "hardoi|Hardoi", "budaun|Budaun", "banda|Banda", "shahjahanpur|Shahjahanpur", "prayagraj|Prayagraj", "moradabad|Moradabad", "bijnor|Bijnor", "bhadohi|Bhadohi", "bara banki|Bara Banki", "unknown|Unknown"];
+      } else if (s1.value == "telangana") {
+        var optionArray = ["|", "hyderabad|Hyderabad", "nizamabad|Nizamabad", "ranga reddy|Ranga Reddy", "warangal urban|Warangal Urban", "medchal malkajgiri|Medchal Malkajgiri", "jogulamba gadwal|Jogulamba Gadwal", "karimnagar|Karimnagar", "nirmal|Nirmal", "nalgonda|Nalgonda", "mahabubnagar|Mahabubnagar", "kamareddy|Kamareddy", "adilabad|Adilabad", "suryapet|Suryapet", "vikarabad|Vikarabad", "sangareddy|Sangareddy", "medak|Medak", "bhadradri kothagudem|Bhadradri Kothagudem", "peddapalli|Peddapalli", "nagarkurnool|Nagarkurnool", "mulugu|Mulugu", "khammam|Khammam", "jayashankar|Jayashankar", "jangoan|Jangoan", "jagitial|Jagitial", "siddipet|Siddipet", "rajanna sircilla|Rajanna Sircilla", "azamgarh|Azamgarh", "mahabubabad|Mahabubabad", "unknown|Unknown"];
+      }else if (s1.value == "andhra") {
+        var optionArray = ["|", "kurnool|Kurnool", "guntur|Guntur", "s.p.s nellore|S.P.S Nellore", "prakasam|Prakasam", "krishna|Krishna", "y.s.r|Y.S.R", "west godavari|West Godavari", "chittoor|Chittoor", "visakhapatnam|Visakhapatnam", "east godavari|East Godavari", "anantapur|Anantapur"];
+      }else if (s1.value == "jammu") {
+        var optionArray = ["|", "bandipore|Bandipore", "baramula|Baramula", "srinagar|Srinagar", "kupwara|Kupwara", "jammu|Jammu", "kashmir|Kashmir", "udhampur|Udhampur", "shupiyan|Shupiyan", "badgam|Badgam", "ganderbal|Ganderbal", "samba|Samba", "kulgam|Kulgam", "rajouri|Rajouri", "pulwama|Pulwama", "kishtwar|Kishtwar", "budaun|Budaun", "unknown|Unknown"];
+      }else if (s1.value == "kerala") {
+        var optionArray = ["|", "kasaragod|Kasaragod", "kannur|Kannur", "ernakulam|Ernakulam", "mallapuram|Mallapuram", "pathanamthitta|Pathanamthitta", "thiruvananthapuram|Thiruvananthapuram", "thrissur|Thrissur", "kozhikode|Kozhikode", "idukki|Idukki", "kollam|Kollam", "palakkad|Palakkad", "alappuzha|Alappuzha", "wayanad|Wayanad", "kottayam|Kottayam"];
+      }else if (s1.value == "karnataka") {
+        var optionArray = ["|", "bengaluru|Bengaluru", "mysuru|Mysuru", "belagavi|Belagavi", "kalaburagi|Kalaburagi", "dakshina kannada|Dakshina Kannada", "bidar|Bidar", "uttara kannada|Uttara Kannada", "chikkaballapura|Chikkaballapura", "bagalkote|Bagalkote", "vijayapura|Vijayapura", "ballari|Ballari", "mandya|Mandya", "bengaluru rural|Bengaluru Rural", "udupi|Udupi", "davanagere|Davanagere", "dharwad|Dharwad", "tumakuru|Tumakuru", "kodagu|Kodagu", "gadag|Gadag"];
+      }else if (s1.value == "haryana") {
+        var optionArray = ["|", "nuh|Nuh", "gurugram|Gurugram", "faridabad|Faridabad", "palwal|Palwal", "ambala|Ambala", "karnal|Karnal", "panchkula|Panchkula", "panipat|Panipat", "yamunanagar|Yamunanagar", "sonipat|Sonipat", "sirsa|Sirsa", "kurukshetra|Kurukshetra", "kaithal|Kaithal", "jind|Jind", "hisar|Hisar", "bhiwani|Bhiwani", "rohtak|Rohtak", "fatehabad|Fatehabad", "charki dadri|Charki Dadri"];
+      }else if (s1.value == "punjab") {
+        var optionArray = ["|", "s.a.s nagar|S.A.S Nagar", "jalandhar|Jalandhar", "shahid bhagat singh nagar|Shahid Bhagat Singh Nagar", "pathankot|Pathankot", "mansa|mansa", "amritsar|Amritsar", "ludhiana|Ludhiana", "hoshiarpur|Hoshiarpur", "moga|Moga", "rupnagar|Rupnagar", "faridkot|Faridkot", "sangrur|Sangrur", "patiala|Patiala", "kapurthala|Kapurthala", "fatehgarh sahib|Fatehgarh Sahib", "barnala|Barnala", "sri muktsar sahib|Sri Muktsar Sahib"];
+      }else if (s1.value == "west") {
+        var optionArray = ["|", "kolkata|Kolkata", "nadia|Nadia", "north 24 parganas|North 24 Parganas", "medinipur east|Medinipur East", "south 24 parganas|South 24 Parganas", "kalimpong|Kalimpong", "howrah|Howrah", "hooghly|Hooghly", "unknown|Unknown"];
+      }else if (s1.value == "odisha") {
+        var optionArray = ["|", "khordha|Khordha", "bhadrak|Bhadrak", "sundargarh|Sundargarh", "kendrapara|Kendrapara", "kalahandi|Kalahandi", "puri|Puri", "jajapur|Jajapur", "dhenkanal|Dhenkanal", "cuttack|Cuttack"];
+      }else if (s1.value == "bihar") {
+        var optionArray = ["|", "siwan|Siwan", "munger|Munger", "begusarai|Begusarai", "patna|Patna", "gaya|Gaya", "nawada|Nawada", "gopalganj|Gopalganj", "nalanda|Nalanda", "saran|Saran", "lakhisarai|Lakhisarai", "bhagalpur|Bhagalpur"];
+      }else if (s1.value == "uttarakhand") {
+        var optionArray = ["|", "dehradun|Dehradun", "nainital|Nainital", "udham singh nagar|Udham Singh Nagar", "haridwar|Haridwar", "pauri garhwal|Pauri Garhwal", "almora|Almora"];
+      }else if (s1.value == "assam") {
+        var optionArray = ["|", "jorhat|Jorhat", "kamrup metropolitan|Kamrup Metropolitan", "nalbari|Nalbari", "goalpara|Goalpara", "dhubri|Dhubri", "cachar|Cachar", "south salmara mancachar|South Salmara Mancachar", "morigaon|Morigaon", "lakhimpur|Lakhimpur", "kamrup|Kamrup", "hailakandi|Hailakandi", "golaghat|Golaghat"];
+      }else if (s1.value == "chhattisgarh") {
+        var optionArray = ["|", "korba|Korba", "raipur|Raipur", "rajnandgaon|Rajnandgaon", "durg|Durg", "bilaspur|Bilaspur"];
+      }else if (s1.value == "himachal") {
+        var optionArray = ["|", "una|Una", "solan|Solan", "kangra|Kangra", "chamba|Chamba", "sirmaur|Sirmaur"];
+      }else if (s1.value == "jharkhand") {
+        var optionArray = ["|", "ranchi|Ranchi", "bokaro|Bokaro", "hazaribagh|Hazaribagh", "kodarma|Kodarma"];
+      }else if (s1.value == "chandigarh") {
+        var optionArray = ["|", "chandigarh|Chandigarh"];
+      }else if (s1.value == "puducherry") {
+        var optionArray = ["|", "puducherry|Puducherry", "mahe|Mahe", "karaikal|Karaikal", "yanam|Yanam"];
+      }else if (s1.value == "ladakh") {
+        var optionArray = ["|", "leh|Leh", "kargil|Kargil"];
+      }else if (s1.value == "goa") {
+        var optionArray = ["|", "north goa|North Goa", "south goa|South Goa", "unknown|Unknown"];
+      }else if (s1.value == "tripura") {
+        var optionArray = ["|", "north tripura|North Tripura", "gomati|Gomati", "dhalai|Dhalai", "sipahijala|Sipahijala", "khowai|Khowai", "unakoti|Unakoti"];
+      }else if (s1.value == "andaman") {
+        var optionArray = ["|", "south andaman|South Andaman", "north and middle andaman|North And Middle Andaman", "nicobar|Nicobar", "unknown|Unknown"];
+      }else if (s1.value == "arunachal") {
+        var optionArray = ["|", "lohit|Lohit", "longding|Longding", "namsai|Namsai", "siang|Siang", "tawang|Tawang", "kamle|Kamle", "tirap|Tirap", "anjaw|Anjaw"];
+      }else if (s1.value == "dadra") {
+        var optionArray = ["|", "dadra and nagar haveli|Dadra And Nagar Haveli"];
+      }else if (s1.value == "manipur") {
+        var optionArray = ["|", "imphal west|Imphal West", "bishnupur|Bishnupur", "chandel|Chandel", "thoubal|Thoubal", "ukhrul|Ukhrul", "noney|Noney", "kamjong|Kamjong"];
+      }else if (s1.value == "mizoram") {
+        var optionArray = ["|", "aizawl|Aizawl", "kolasib|Kolasib", "lawngtlai|Lawngtlai", "linglei|Linglei", "mamit|Mamit", "saiha|Saiha", "serchhip|Serchhip", "champhai|Champhai"];
+      }else if (s1.value == "nagaland") {
+        var optionArray = ["|", "dimapur|Dimapur", "kiphire|Kiphire", "kohima|Kohima", "longleng|Longleng", "mokokchung|Mokokchung", "mon|Mon", "peren|Peren", "phek|Phek"];
+      }else if (s1.value == "meghalaya") {
+        var optionArray = ["|", "garo hills|Garo Hills", "jaintia hills|Jaintia Hills", "khasi hills|Khasi Hills", "ri bhoi|Ri Bhoi"];
+      }else if (s1.value == "lakshadweep") {
+        var optionArray = ["|", "lakshadweep|Lakshadweep"];
+      }else if (s1.value == "sikkim") {
+        var optionArray = ["|", "east sikkim|East Sikkim", "north sikkim|North Sikkim", "south sikkim|South Sikkim", "west sikkim|West Sikkim"];
+      }
+      for (var option in optionArray) {
+        var pair = optionArray[option].split("|");
+        var newOption = document.createElement("option");
+        newOption.value = pair[0];
+        newOption.innerHTML = pair[1];
+        s2.options.add(newOption);
+      }
+    }
+  </script>
+
+</head>
+
+<body style="background-image: url({% static 'images/registerback1.jpg' %}); background-repeat: no-repeat; background-size: 1920px 1080px;">
+  <div style="position: relative; right: -200px; top: 250px;">
+  <a href="search">
+    <button type="button" class="btn btn-primary" >
+      Search Patient Details
+    </button>
+  </a>
+  </div>
+
+{% block content %}
+
+<div>
+      <a href="logout">
+        <button type="button" id="logout" class="btn btn-danger" style="position: relative; right: -1400px; top: 200px;">Logout</button>
+      </a>
+</div>
+
+<form action="register" method="post">
+  {% csrf_token %}
+
+  <div class="page-wrapper p-t-45 p-b-50" style="position: relative; top: 100px;">
+    <div class="wrapper wrapper--w790">
+      <div class="card card-5">
+        <div class="card-heading">
+          <h2 class="title">Patient Registration Form</h2>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            <div class="form-row m-b-55">
+              <div class="name">Name</div>
+              <div class="value">
+                <div class="row row-space">
+                  <div class="col-2">
+                    <div class="input-group-desc adjust">
+                      <input class="input--style-5" type="text" name="firstname" placeholder="First Name">
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="input-group-desc">
+                      <input class="input--style-5" type="text" name="lastname" placeholder="Last Name">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row m-b-55">
+              <div class="name" style="position: relative; top: 0px;">Phone</div>
+              <div class="value">
+                <div class="row row-refine">
+                  <div class="col-2">
+                    <div class="input-group-desc">
+                      <input class="input--style-5" style="position: relative; top: 10px;" type="text" name="phone" placeholder="Phone Number">
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="input-group-desc adjust1">
+                      <div class="name" style="position: relative; left: -70px; top: 25px;">Age</div>
+                      <input class="input--style-5" type="text" name="age" placeholder="Age" style="position: relative; top: -10px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row m-b-55">
+              <div class="name" style="position: relative; ">State/UT</div>
+              <div class="value">
+                <div class="row row-refine">
+                  <div class="col-2">
+                    <div class="input-group-desc">
+                      <select id="slct1" name="slct1" onchange="populate(this.id, 'slct2')" style="width: 242px; height: 50px;" class="col-2 input--style-5">
+                        <option value=""></option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="tamil">Tamil Nadu</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="uttar">Uttar Pradesh</option>
+                        <option value="madhya">Madhya Pradesh</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="andhra">Andhra Pradesh</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="jammu">Jammu and Kashmir</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="haryana">Haryana</option>
+                        <option value="punjab">Punjab</option>
+                        <option value="west">West Bengal</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="odisha">Odisha</option>
+                        <option value="uttarakhand">Uttarakhand</option>
+                        <option value="assam">Assam</option>
+                        <option value="himachal">Himachal Pradesh</option>
+                        <option value="jharkhand">Jharkhand</option>
+                        <option value="chandigarh">Chandigarh</option>
+                        <option value="chhattisgarh">Chhattisgarh</option>
+                        <option value="goa">Goa</option>
+                        <option value="puducherry">Puducherry</option>
+                        <option value="ladakh">Ladakh</option>
+                        <option value="tripura">Tripura</option>
+                        <option value="andaman">Andaman and Nicobar Islands</option>
+                        <option value="arunachal">Arunachal Pradesh</option>
+                        <option value="dadra">Dadra and Nagar Haveli</option>
+                        <option value="manipur">Manipur</option>
+                        <option value="mizoram">Mizoram</option>
+                        <option value="meghalaya">Meghalaya</option>
+                        <option value="nagaland">Nagaland</option>
+                        <option value="lakshadweep">Lakshadweep</option>
+                        <option value="sikkim">Sikkim</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row m-b-55">
+              <div class="name" style="position: relative; ">City/District</div>
+              <div class="value">
+                <div class="row row-refine">
+                  <div class="col-2">
+                    <div class="input-group-desc">
+                      <select id="slct2" name="slct2" style="width: 242px; height: 50px;" class="col-2 input--style-5"></select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row m-b-55">
+              <div class="name" style="position: relative; bottom: 30px;">Travel History</div>
+              <div class="value">
+                <div class="row row-refine">
+                  <div class="col-2">
+                    <div class="input-group-desc">
+                      <input class="input--style-5" type="text" name="travelhistory" placeholder="Travel History">
+                    </div>
+                  </div>
+                  <div class="form-row m-b-55">
+                    <div class="name" style="position: relative; right: -40px;">Status</div>
+                    <div class="value">
+                      <div class="row row-refine">
+                        <div class="col-2">
+                          <div class="input-group-desc">
+                            <select id="slct3" name="slct3" style="width: 150px; height: 50px;" class="col-2 input--style-5">
+                              <option value=""></option>
+                              <option value="active">Active</option>
+                              <option value="recovered">Recovered</option>
+                              <option value="deceased">Deceased</option>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn--radius-2 btn--red" style="position: relative; left: 220px; top: -50px;" type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<br><br><br><br><br><br>
+
+{% endblock %}
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

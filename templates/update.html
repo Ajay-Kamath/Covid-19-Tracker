@@ -1,0 +1,29 @@
+{% extends 'register.html' %}
+
+{% block content %}
+
+<style>
+
+    .update{
+    position: relative;
+    top: 250px;
+    }
+
+</style>
+
+<div class="update">
+
+<h3>Update Patient</h3>
+
+<form method="post" action="">
+    {% csrf_token %}
+
+    <table>
+    {{ form.as_table }}
+    </table>
+
+    <input type="submit" name="Update Patient" style="width: 100px;">
+
+</form>
+</div>
+{% endblock %}

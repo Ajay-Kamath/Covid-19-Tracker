@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Patient</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <style>
+        .data{
+        position: absolute;
+        }
+    </style>
+</head>
+<body style="background-color: #d7d7c1; background-repeat: no-repeat;">
+
+<div class="container">
+    <h1>Search Patient Information</h1>
+    <form method="post" action="search">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-lg-5">
+                <input type="text" name="srh" class="form-control" placeholder="Enter name, city or state" autocomplete="off" style="position: relative; left:-15px;">
+            </div>
+            <label class="col-lg-2">
+                <button type="submit" class="btn btn-danger">Search</button>
+            </label>
+        </div>
+    </form>
+    <br><br>
+<div>
+    {% if messages %}
+        <ul class="messages">
+            {% for k in messages %}
+            <li style="color: red;">{{ k }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+    <br>
+    <div style="color: black;">
+        {% if sr %}
+            {% for k in sr %}
+                <button type="button" class="btn btn-dark" style="background-color: black; position: relative; right: -100px; top: 33px;">
+                    <a href="{% url 'update' k.id %}" style="color: white; text-decoration: none;">
+                        Update Details
+                    </a>
+                </button>
+                <form action="{% url 'delete' k.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
+            <table border="0px" width="200px">
+            <tr>
+                <td>First Name</td>
+                <td class="data">{{ k.firstname }}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td class="data">{{ k.lastname }}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td class="data">{{ k.phonenumber }}</td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td class="data">{{ k.age }}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td class="data">{{ k.state }}</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td class="data">{{ k.city }}</td>
+            </tr>
+            <tr>
+                <td>Travel History</td>
+                <td class="data">{{ k.travelhistory }}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td class="data">{{ k.status }}</td>
+            </tr>
+            </table>
+        <br>
+        <hr>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

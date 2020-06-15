@@ -1,0 +1,805 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Coronavirus Outbreak in India</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+  <script>
+    maharashtra = '{{maharashtra_confirmed}}'
+    tamilnadu = '{{tamilnadu_confirmed}}'
+    delhi = '{{delhi_confirmed}}'
+    telangana = '{{telangana_confirmed}}'
+    rajasthan = '{{rajasthan_confirmed}}'
+    uttarpradesh = '{{uttarpradesh_confirmed}}'
+    andhrapradesh = '{{andhrapradesh_confirmed}}'
+    madhyapradesh = '{{madhyapradesh_confirmed}}'
+    kerala = '{{kerala_confirmed}}'
+    gujarat = '{{gujarat_confirmed}}'
+    karnataka = '{{karnataka_confirmed}}'
+    haryana = '{{haryana_confirmed}}'
+    jammuandkashmir = '{{jammuandkashmir_confirmed}}'
+    westbengal = '{{westbengal_confirmed}}'
+    bihar = '{{bihar_confirmed}}'
+    odisha = '{{odisha_confirmed}}'
+    uttarakhand = '{{uttarakhand_confirmed}}'
+    assam = '{{assam_confirmed}}'
+    himachalpradesh = '{{himachalpradesh_confirmed}}'
+    chandigarh = '{{chandigarh_confirmed}}'
+    ladakh = '{{ladakh_confirmed}}'
+    jharkhand = '{{jharkhand_confirmed}}'
+    andamanandnicobarislands = '{{andamanandnicobarislands_confirmed}}'
+    chhattisgarh = '{{chhattisgarh_confirmed}}'
+    goa = '{{goa_confirmed}}'
+    puducherry = '{{puducherry_confirmed}}'
+    punjab = '{{punjab_confirmed}}'
+    manipur = '{{manipur_confirmed}}'
+    arunachalpradesh = '{{arunachalpradesh_confirmed}}'
+    dadraandnagarhaveli = '{{dadraandnagarhaveli_confirmed}}'
+    mizoram = '{{mizoram_confirmed}}'
+    tripura = '{{tripura_confirmed}}'
+    meghalaya = '{{meghalaya_confirmed}}'
+    nagaland = '{{nagaland_confirmed}}'
+    sikkim = '{{sikkim_confirmed}}'
+    lakshadweep = '{{lakshadweep_confirmed}}'
+
+    var simplemaps_countrymap_mapdata={
+      main_settings: {
+       //General settings
+        width: "500", //'700' or 'responsive'
+        background_color: "#FFFFFF",
+        background_transparent: "yes",
+        border_color: "black",
+
+        //State defaults
+        state_description: "#data# infected patients",
+        state_color: "#88A4BC",
+        state_hover_color: "#bcc9d4",
+        state_url: "",
+        border_size: 1.5,
+        all_states_inactive: "no",
+        all_states_zoomable: "yes",
+
+        //Location defaults
+        location_description: "Location description",
+        location_color: "#FF0067",
+        location_opacity: 0.8,
+        location_hover_opacity: 1,
+        location_url: "",
+        location_size: 25,
+        location_type: "square",
+        location_image_source: "frog.png",
+        location_border_color: "#FFFFFF",
+        location_border: 2,
+        location_hover_border: 2.5,
+        all_locations_inactive: "no",
+        all_locations_hidden: "no",
+
+        //Label defaults
+        label_color: "#d5ddec",
+        label_hover_color: "#d5ddec",
+        label_size: 22,
+        label_font: "Arial",
+        hide_labels: "no",
+        hide_eastern_labels: "no",
+
+        //Zoom settings
+        zoom: "yes",
+        back_image: "no",
+        initial_back: "no",
+        initial_zoom: "-1",
+        initial_zoom_solo: "no",
+        region_opacity: 1,
+        region_hover_opacity: 0.6,
+        zoom_out_incrementally: "yes",
+        zoom_percentage: 0.99,
+        zoom_time: 0.5,
+
+        //Popup settings
+        popup_color: "white",
+        popup_opacity: 0.9,
+        popup_shadow: 1,
+        popup_corners: 5,
+        popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
+        popup_nocss: "no",
+
+        //Advanced settings
+        div: "map",
+        auto_load: "yes",
+        url_new_tab: "no",
+        images_directory: "default",
+        fade_time: 0.1,
+        link_text: "View Website",
+        popups: "detect",
+        state_image_url: "",
+        state_image_position: "",
+        location_image_url: "",
+        manual_zoom: "yes",
+        border_hover_color: null,
+        border_hover_size: "2"
+      },
+      state_specific: {
+        "1": {
+          color: "#b5c4ba",
+          name: "Andaman and Nicobar",
+          description: andamanandnicobarislands + " infected patients"
+        },
+        "2": {
+          color: "#b5c4ba",
+          name: "Andhra Pradesh",
+          description: andhrapradesh + " infected patients"
+        },
+        "3": {
+          color: "#99ad9f",
+          name: "Arunachal Pradesh",
+          description: arunachalpradesh + " infected patients"
+        },
+        "4": {
+          color: "#b5c4ba",
+          name: "Assam",
+          description: assam + " infected patients"
+        },
+        "5": {
+          color: "#b5c4ba",
+          name: "Bihar",
+          description: bihar + " infected patients"
+        },
+        "6": {
+          color: "#99ad9f",
+          name: "Chandigarh",
+          description: chandigarh + " infected patients"
+        },
+        "7": {
+          color: "#99ad9f",
+          name: "Chhattisgarh",
+          description: chhattisgarh + " infected patients"
+        },
+        "8": {
+          color: "#b5c4ba",
+          name: "Dadra and Nagar Haveli",
+          description: dadraandnagarhaveli + " infected patients"
+        },
+        "9": {
+          color: "#b5c4ba",
+          name: "Daman and Diu",
+          description: "4 infected patients"
+        },
+        "10": {
+          color: "#647c6c",
+          name: "Delhi",
+          description: delhi + " infected patients"
+        },
+        "11": {
+          color: "#99ad9f",
+          name: "Goa",
+          description: goa + " infected patients"
+        },
+        "12": {
+          color: "#7d9685",
+          name: "Gujarat",
+          description: gujarat + " infected patients"
+        },
+        "13": {
+          color: "#99ad9f",
+          name: "Haryana",
+          description: haryana + " infected patients"
+        },
+        "14": {
+          color: "#99ad9f",
+          name: "Himachal Pradesh",
+          description: himachalpradesh + " infected patients"
+        },
+        "16": {
+          color: "#b5c4ba",
+          name: "Jharkhand",
+          description: jharkhand + " infected patients"
+        },
+        "17": {
+          color: "#7d9685",
+          name: "Karnataka",
+          description: karnataka + " infected patients"
+        },
+        "18": {
+          color: "#647c6c",
+          name: "Kerala",
+          description: kerala + " infected patients"
+        },
+        "19": {
+          color: "#b5c4ba",
+          name: "Lakshadweep",
+          description: lakshadweep + " infected patients"
+        },
+        "20": {
+          color: "#647c6c",
+          name: "Madhya Pradesh",
+          description: madhyapradesh + " infected patients"
+        },
+        "21": {
+          color: "#4d6053",
+          name: "Maharashtra",
+          description: maharashtra + " infected patients"
+        },
+        "22": {
+          color: "#b5c4ba",
+          name: "Manipur",
+          description: manipur + " infected patients"
+        },
+        "23": {
+          color: "#b5c4ba",
+          name: "Meghalaya",
+          description: meghalaya + " infected patients"
+        },
+        "24": {
+          color: "#b5c4ba",
+          name: "Mizoram",
+          description: mizoram + " infected patients"
+        },
+        "25": {
+          color: "#b5c4ba",
+          name: "Nagaland",
+          description: nagaland + " infected patients"
+        },
+        "26": {
+          color: "#99ad9f",
+          name: "Orissa",
+          description: odisha + " infected patients"
+        },
+        "27": {
+          color: "#b5c4ba",
+          name: "Puducherry",
+          description: puducherry + " infected patients"
+        },
+        "28": {
+          color: "#7d9685",
+          name: "Punjab",
+          description: punjab + " infected patients"
+        },
+        "29": {
+          color: "#647c6c",
+          name: "Rajasthan",
+          description: rajasthan + " infected patients"
+        },
+        "30": {
+          color: "#b5c4ba",
+          name: "Sikkim",
+          description: sikkim + " infected patients"
+        },
+        "31": {
+          color: "#7d9685",
+          name: "Tamil Nadu",
+          description: tamilnadu + " infected patients"
+        },
+        "32": {
+          color: "#b5c4ba",
+          name: "Tripura",
+          description: tripura + " infected patients"
+        },
+        "33": {
+          color: "#b5c4ba",
+          name: "Uttar Pradesh",
+          description: uttarpradesh + " infected patients"
+        },
+        "34": {
+          color: "#b5c4ba",
+          name: "Uttarakhand",
+          description: uttarakhand + " infected patients"
+        },
+        "35": {
+          color: "#99ad9f",
+          name: "West Bengal",
+          description: westbengal + " infected patients"
+        },
+        "36": {
+          color: "#99ad9f",
+          name: "Jammu and Kashmir",
+          description: jammuandkashmir + " infected patients"
+        },
+        "37": {
+          color: "#b5c4ba",
+          name: "Telangana",
+          description: telangana + " infected patients"
+        }
+      },
+      locations: {},
+      labels: {},
+      regions: {},
+        data: {
+        data: {
+          "1": andamanandnicobarislands,
+          "2": andhrapradesh,
+          "3": arunachalpradesh,
+          "4": assam,
+          "5": bihar,
+          "6": chandigarh,
+          "7": chhattisgarh,
+          "8": dadraandnagarhaveli,
+          "9": "18",
+          "10": delhi,
+          "11": goa,
+          "12": gujarat,
+          "13": haryana,
+          "14": himachalpradesh,
+          "16": jharkhand,
+          "17": karnataka,
+          "18": kerala,
+          "19": lakshadweep,
+          "20": madhyapradesh,
+          "21": maharashtra,
+          "22": manipur,
+          "23": meghalaya,
+          "24": mizoram,
+          "25": nagaland,
+          "26": odisha,
+          "27": puducherry,
+          "28": punjab,
+          "29": rajasthan,
+          "30": sikkim,
+          "31": tamilnadu,
+          "32": tripura,
+          "33": uttarpradesh,
+          "34": uttarakhand,
+          "35": westbengal,
+          "36": jammuandkashmir,
+          "37": telangana
+        }
+      }
+    };
+
+
+    window.onload = function () {
+
+    var chartContainer = document.getElementById("chartContainer");
+    chartContainer.style.fontSize = "25px";
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+
+	title:{
+		text:"State wise Graphical Representation"
+	},
+	axisX:{
+		interval:2
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "Number of Infected Patients"
+	},
+	data: [{
+		type: "bar",
+		name: "companies",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+			{ y: 80, label: "Maharashtra" },
+			{ y: 40, label: "Tamil Nadu" },
+			{ y: 50, label: "Delhi" },
+			{ y: 17, label: "Telangana" },
+			{ y: 55, label: "Rajasthan" },
+			{ y: 18, label: "Uttar Pradesh" },
+			{ y: 15, label: "Andhra Pradesh" },
+			{ y: 50, label: "Madhya Pradesh" },
+			{ y: 60, label: "Kerala" },
+			{ y: 45, label: "Gujarat" },
+			{ y: 40, label: "Karnataka" },
+			{ y: 30, label: "Haryana" },
+			{ y: 22, label: "Jammu & Kashmir" },
+			{ y: 35, label: "Punjab" },
+			{ y: 26, label: "West Bengal" },
+			{ y: 10, label: "Bihar" },
+			{ y: 25, label: "Odisha" },
+			{ y: 14, label: "Uttarakhand" },
+			{ y: 15, label: "Assam" },
+			{ y: 25, label: "Himachal Pradesh" },
+			{ y: 20, label: "Chandigarh" },
+			{ y: 1, label: "Ladakh" },
+			{ y: 10, label: "Jharkhand" },
+			{ y: 8, label: "Andaman & Nicobar" },
+			{ y: 22, label: "Chhattisgarh" },
+			{ y: 28, label: "Goa" },
+			{ y: 8, label: "Puducherry" },
+			{ y: 15, label: "Manipur" },
+			{ y: 20, label: "Arunachal Pradesh" },
+			{ y: 5, label: "Dadra & Nagar Haveli" },
+			{ y: 7, label: "Mizoram" },
+			{ y: 12, label: "Tripura" },
+			{ y: 18, label: "Meghalaya" },
+			{ y: 4, label: "Nagaland" },
+			{ y: 9, label: "Sikkim" },
+			{ y: 4, label: "Lakshadweep" },
+		]
+	}]
+});
+chart.render();
+}
+  </script>
+  <script src="{% static 'js/countrymap.js' %}"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+  <div class="jumbotron" style="margin-bottom: 0px;">
+    <h1>INDIA COVID-19 TRACKER</h1>
+    <p>A CROWDSOURCED INITIATIVE</p>
+  </div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapse_target">
+      <a class="navbar-brand"><img src="{% static '/images/corona.jpg' %}"></a>
+      <span class="navbar-text">Covid-19</span>
+      <div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/helpfullinks">HELPFUL LINKS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">GRAPHS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/faq">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/index">ADMIN LOGIN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="carouselpart">
+  <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+    <center>    <div style="width: 50%;" class="carousel-inner">
+        <div class="carousel-item active container-fluid">
+          <h3>Avoid going out during the lockdown. Help break the chain of spread!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Help out your employees and domestic workers by not cutting their salaries. Show the true Indian spirit!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Stand against FAKE news and illegit WhatsApp forwards! Do NOT forward a message until you verify the content it contains!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Be considerate. While buying essentials remember that you need to share with 130 crore fellow citizens!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>The virus does not discriminate. Why do you!? DO NOT DISCRIMINATE. We are all Indians!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Lockdown means LOCKDOWN! Avoid getting out unless absolutely necessary. Stay safe!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Going out for essentials? Social Distancing is KEY! Maintain atleast 2 metres distance between each other in the line!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Panic mode: OFF! ESSENTIALS ARE ON!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Call up your loved ones during the lockdown, support each other through these times.</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Be a true Indian. Show compassion, Be considerate, Help those in need. We will get through this!</h3>
+        </div><div class="carousel-item container-fluid">
+          <h3>If you have any medical queries, reach out to your state helpline, district administration or trusted doctors!</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>Get in touch with your local NGO's and district administration to volunteer for this cause.</h3>
+        </div><div class="carousel-item container-fluid">
+          <h3>Wash your hands with soap and water often, especially after a grocery run. Keep the virus at bay.</h3>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h3>This will pass too. Enjoy your time at home and spend quality time with your family! Things will be normal soon.</h3>
+        </div>
+      </div>
+      </center>
+    </div>
+  </section>
+
+  <div style="float: right; position: relative; top: 150px; right: 30px;">
+    <h3>INDIA MAP</h3>
+    <p>Hover over a state/UT for more details</p>
+  </div>
+
+  <table class="content-table" style="position: relative; left: -50px;">
+    <thead>
+      <tr>
+        <th>STATE/UT</th>
+        <th>CONFIRMED</th>
+        <th>ACTIVE</th>
+        <th>RECOVERED</th>
+        <th>DECEASED</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MAHARASHTRA</td>
+        <td>{{ maharashtra_confirmed }}</td>
+        <td>{{ maharashtra_active }}</td>
+        <td>{{ maharashtra_recovered }}</td>
+        <td>{{ maharashtra_deceased }}</td>
+      </tr>
+      <tr>
+        <td>TAMIL NADU</td>
+        <td>{{ tamilnadu_confirmed }}</td>
+        <td>{{ tamilnadu_active }}</td>
+        <td>{{ tamilnadu_recovered }}</td>
+        <td>{{ tamilnadu_deceased }}</td>
+      </tr>
+      <tr>
+        <td>DELHI</td>
+        <td>{{ delhi_confirmed }}</td>
+        <td>{{ delhi_active }}</td>
+        <td>{{ delhi_recovered }}</td>
+        <td>{{ delhi_deceased }}</td>
+      </tr>
+      <tr>
+        <td>TELANGANA</td>
+        <td>{{ telangana_confirmed }}</td>
+        <td>{{ telangana_active }}</td>
+        <td>{{ telangana_recovered }}</td>
+        <td>{{ telangana_deceased }}</td>
+      </tr>
+      <tr>
+        <td>RAJASTHAN</td>
+        <td>{{ rajasthan_confirmed }}</td>
+        <td>{{ rajasthan_active }}</td>
+        <td>{{ rajasthan_recovered }}</td>
+        <td>{{ rajasthan_deceased }}</td>
+      </tr>
+      <tr>
+        <td>UTTAR PRADESH</td>
+        <td>{{ uttarpradesh_confirmed }}</td>
+        <td>{{ uttarpradesh_active }}</td>
+        <td>{{ uttarpradesh_recovered }}</td>
+        <td>{{ uttarpradesh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>ANDHRA PRADESH</td>
+        <td>{{ andhrapradesh_confirmed }}</td>
+        <td>{{ andhrapradesh_active }}</td>
+        <td>{{ andhrapradesh_recovered }}</td>
+        <td>{{ andhrapradesh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>MADHYA PRADESH</td>
+        <td>{{ madhyapradesh_confirmed }}</td>
+        <td>{{ madhyapradesh_active }}</td>
+        <td>{{ madhyapradesh_recovered }}</td>
+        <td>{{ madhyapradesh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>KERALA</td>
+        <td>{{ kerala_confirmed }}</td>
+        <td>{{ kerala_active }}</td>
+        <td>{{ kerala_recovered }}</td>
+        <td>{{ kerala_deceased }}</td>
+      </tr>
+      <tr>
+        <td>GUJARAT</td>
+        <td>{{ gujarat_confirmed }}</td>
+        <td>{{ gujarat_active }}</td>
+        <td>{{ gujarat_recovered }}</td>
+        <td>{{ gujarat_deceased }}</td>
+      </tr>
+      <tr>
+        <td>KARNATAKA</td>
+        <td>{{ karnataka_confirmed }}</td>
+        <td>{{ karnataka_active }}</td>
+        <td>{{ karnataka_recovered }}</td>
+        <td>{{ karnataka_deceased }}</td>
+      </tr>
+      <tr>
+        <td>HARYANA</td>
+        <td>{{ haryana_confirmed }}</td>
+        <td>{{ haryana_active }}</td>
+        <td>{{ haryana_recovered }}</td>
+        <td>{{ haryana_deceased }}</td>
+      </tr>
+      <tr>
+        <td>JAMMU AND KASHMIR</td>
+        <td>{{ jammuandkashmir_confirmed }}</td>
+        <td>{{ jammuandkashmir_active }}</td>
+        <td>{{ jammuandkashmir_recovered }}</td>
+        <td>{{ jammuandkashmir_deceased }}</td>
+      </tr>
+      <tr>
+        <td>PUNJAB</td>
+        <td>{{ punjab_confirmed }}</td>
+        <td>{{ punjab_active }}</td>
+        <td>{{ punjab_recovered }}</td>
+        <td>{{ punjab_deceased }}</td>
+      </tr>
+      <tr>
+        <td>WEST BENGAL</td>
+        <td>{{ westbengal_confirmed }}</td>
+        <td>{{ westbengal_active }}</td>
+        <td>{{ westbengal_recovered }}</td>
+        <td>{{ westbengal_deceased }}</td>
+      </tr>
+      <tr>
+        <td>BIHAR</td>
+        <td>{{ bihar_confirmed }}</td>
+        <td>{{ bihar_active }}</td>
+        <td>{{ bihar_recovered }}</td>
+        <td>{{ bihar_deceased}}</td>
+      </tr>
+      <tr>
+        <td>ODISHA</td>
+        <td>{{ odisha_confirmed }}</td>
+        <td>{{ odisha_active }}</td>
+        <td>{{ odisha_recovered }}</td>
+        <td>{{ odisha_deceased }}</td>
+      </tr>
+      <tr>
+        <td>UTTARAKHAND</td>
+        <td>{{ uttarakhand_confirmed }}</td>
+        <td>{{ uttarakhand_active }}</td>
+        <td>{{ uttarakhand_recovered }}</td>
+        <td>{{ uttarakhand_deceased }}</td>
+      </tr>
+      <tr>
+        <td>ASSAM</td>
+        <td>{{ assam_confirmed }}</td>
+        <td>{{ assam_active }}</td>
+        <td>{{ assam_recovered }}</td>
+        <td>{{ assam_deceased }}</td>
+      </tr>
+      <tr>
+        <td>HIMACHAL PRADESH</td>
+        <td>{{ himachalpradesh_confirmed }}</td>
+        <td>{{ himachalpradesh_active }}</td>
+        <td>{{ himachalpradesh_recovered }}</td>
+        <td>{{ himachalpradesh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>CHANDIGARH</td>
+        <td>{{ chandigarh_confirmed }}</td>
+        <td>{{ chandigarh_active }}</td>
+        <td>{{ chandigarh_recovered }}</td>
+        <td>{{ chandigarh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>LADAKH</td>
+        <td>{{ ladakh_confirmed }}</td>
+        <td>{{ ladakh_active }}</td>
+        <td>{{ ladakh_recovered }}</td>
+        <td>{{ ladakh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>JHARKHAND</td>
+        <td>{{ jharkhand_confirmed }}</td>
+        <td>{{ jharkhand_active }}</td>
+        <td>{{ jharkhand_recovered }}</td>
+        <td>{{ jharkhand_deceased }}</td>
+      </tr>
+      <tr>
+        <td>ANDAMAN AND NICOBAR ISLANDS</td>
+        <td>{{ andamanandnicobarislands_confirmed }}</td>
+        <td>{{ andamanandnicobarislands_active }}</td>
+        <td>{{ andamanandnicobarislands_recovered }}</td>
+        <td>{{ andamanandnicobarislands_deceased }}</td>
+      </tr>
+      <tr>
+        <td>CHHATTISGARH</td>
+        <td>{{ chhattisgarh_confirmed }}</td>
+        <td>{{ chhattisgarh_active }}</td>
+        <td>{{ chhattisgarh_recovered }}</td>
+        <td>{{ chhattisgarh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>GOA</td>
+        <td>{{ goa_confirmed }}</td>
+        <td>{{ goa_active }}</td>
+        <td>{{ goa_recovered }}</td>
+        <td>{{ goa_deceased }}</td>
+      </tr>
+      <tr>
+        <td>PUDUCHERRY</td>
+        <td>{{ puducherry_confirmed }}</td>
+        <td>{{ puducherry_active }}</td>
+        <td>{{ puducherry_recovered }}</td>
+        <td>{{ puducherry_deceased }}</td>
+      </tr>
+      <tr>
+        <td>MANIPUR</td>
+        <td>{{ manipur_confirmed }}</td>
+        <td>{{ manipur_active }}</td>
+        <td>{{ manipur_recovered }}</td>
+        <td>{{ manipur_deceased }}</td>
+      </tr>
+      <tr>
+        <td>ARUNACHAL PRADESH</td>
+        <td>{{ arunachalpradesh_confirmed }}</td>
+        <td>{{ arunachalpradesh_active }}</td>
+        <td>{{ arunachalpradesh_recovered }}</td>
+        <td>{{ arunachalpradesh_deceased }}</td>
+      </tr>
+      <tr>
+        <td>DADRA AND NAGAR HAVELI</td>
+        <td>{{ dadraandnagarhaveli_confirmed }}</td>
+        <td>{{ dadraandnagarhaveli_active }}</td>
+        <td>{{ dadraandnagarhaveli_recovered }}</td>
+        <td>{{ dadraandnagarhaveli_deceased }}</td>
+      </tr>
+      <tr>
+        <td>MIZORAM</td>
+        <td>{{ mizoram_confirmed }}</td>
+        <td>{{ mizoram_active }}</td>
+        <td>{{ mizoram_recovered }}</td>
+        <td>{{ mizoram_deceased}}</td>
+      </tr>
+      <tr>
+        <td>TRIPURA</td>
+        <td>{{ tripura_confirmed }}</td>
+        <td>{{ tripura_active }}</td>
+        <td>{{ tripura_recovered }}</td>
+        <td>{{ tripura_deceased }}</td>
+      </tr>
+      <tr>
+        <td>MEGHALAYA</td>
+        <td>{{ meghalaya_confirmed }}</td>
+        <td>{{ meghalaya_active }}</td>
+        <td>{{ meghalaya_recovered }}</td>
+        <td>{{ meghalaya_deceased }}</td>
+      </tr>
+      <tr>
+        <td>NAGALAND</td>
+        <td>{{ nagaland_confirmed }}</td>
+        <td>{{ nagaland_active }}</td>
+        <td>{{ nagaland_recovered }}</td>
+        <td>{{ nagaland_deceased }}</td>
+      </tr>
+      <tr>
+        <td>SIKKIM</td>
+        <td>{{ sikkim_confirmed }}</td>
+        <td>{{ sikkim_active }}</td>
+        <td>{{ sikkim_recovered }}</td>
+        <td>{{ sikkim_deceased }}</td>
+      </tr>
+      <tr>
+        <td>LAKSHADWEEP</td>
+        <td>{{ lakshadweep_confirmed }}</td>
+        <td>{{ lakshadweep_active }}</td>
+        <td>{{ lakshadweep_recovered }}</td>
+        <td>{{ lakshadweep_deceased }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <div id="map" style="position: relative; left: 950px; top: -1815px; width: 100px;"></div>
+    <div class="legend" style="position: relative; left: 900px; top: -1815px;">
+      <ul class="legend_label">
+        <li>19</li><li>34</li><li>50</li><li>65</li>
+      </ul>
+      <ul class="legend_color">
+        <li style="background-color: #b5c4ba"></li>
+        <li style="background-color: #99ad9f"></li>
+        <li style="background-color: #7d9685"></li>
+        <li style="background-color: #647c6c"></li>
+        <li style="background-color: #4d6053"></li>
+      </ul>
+    </div>
+
+  <div id="chartContainer" style="height: 800px; width: 100%; position: relative; top: -500px; "></div>
+  <h3 style="position: relative; float: right; top: -1100px; font-weight: bold;">Hover over a bar for more details about a state/UT! </h3>
+
+  <div class="rectangle"></div>
+
+</body>
+
+</html>
